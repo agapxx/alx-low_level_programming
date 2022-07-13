@@ -3,7 +3,7 @@
 /**
  * _puts - check the code for Holberton School students.
  * @str: validate the character
- * Return: Always 0.
+ * Return: Always 0
  */
 void _puts(char *str)
 {
