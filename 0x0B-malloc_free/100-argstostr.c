@@ -3,48 +3,43 @@
 #include <stdlib.h>
 
 /**
- * argstostr - function that concatenates all the arguments of your program.
- *
- *
- * @ac: ARGC
- * @av: ARGV
- *
- * Return: Pointer
- */
+* argstostr - function that concatenates all the arguments of your program
+*
+* @ac: argument count
+* @av: pointer to a string of pointers to strings
+*
+* Return: address of the newly allocated memory
+*/
+
 char *argstostr(int ac, char **av)
 {
-	int i = 0, j, longitud = 0, l, k;
-	char *string;
-
-	if (ac == 0 || av == '\0')
-	return (NULL);
-
-	for (i = 0; i < ac; i++)
-	{
-		j = 0;
-		while (av[i][j] != '\0')
-		{
-			j++;
-		}
-		longitud  +=  j + 1;
-	}
-	string = malloc(sizeof(char) * (longitud + 1));
-
-	if (string == NULL)
-	{
-		return (NULL);
-	}
-	longitud = 0;
-	for (k = 0; k < ac; k++)
-	{
-		for (l = 0; av[k][l] != '\0'; l++)
-		{
-			*(string + longitud) = av[k][l];
-			longitud++;
-		}
-		*(string + longitud) = '\n';
-		longitud++;
-	}
-
-	return (string);
+int i, j, k;
+int sumlen = 0;
+char *arg_concat;
+if (ac == 0 || av == NULL)
+return (NULL);
+for (i = 0; i < ac; i++)
+{
+for (j = 0; av[i][j] != '\0'; j++)
+sumlen++;
+sumlen++;
+}
+sumlen++;
+arg_concat = malloc(sumlen *sizeof(char));
+if (arg_concat == NULL)
+{
+free(arg_concat);
+return (NULL);
+}
+k = 0;
+for (i = 0; i < ac; i++)
+{
+for (j = 0; av[i][j] != '\0'; j++, k++)
+{
+arg_concat[k] = av[i][j];
+}
+arg_concat[k] = '\n';
+k++;
+}
+return (arg_concat);
 }
