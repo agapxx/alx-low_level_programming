@@ -1,41 +1,49 @@
-#include "3-calc.h"
+#include <stdio.h>
+#include "function_pointers.h"
+#include <stdlib.h>
+#include <string.h>
 
 /**
- * main - entry point
- * @argc: number of command line arguments
- * @argv: array of command line arguments
- *
- * Return: always 0 (success)
- */
+* main - check the program
+* @argc: arguments can't
+* @argv: vector arguments
+* Return: 0 if false, something else otherwise.
+*/
 
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
-	int num1, num2, operator, i;
-	char operators[] = {'+', '-', '*', '=', '/', '%'};
-
-	if (argc != 4)
-	{
-		printf("Error\n");
-		exit (98);
-	}
-	
-	num1 = atoi(argv[1]);
-	operator = argv[2];
-	num2 = atoi(argv[3]);
-
-	for (i = 0; i < 5; i++)
-	{
-		if (operator] != operators[i])
-		{
-			printf("Error\n");
-			exit (99);
-		}
-	}
-	if (num2 == 0)
-	{
-		printf("Error\n");
-		exit (100);
-	}
-	
-
+int (*get)(int, int);
+int a, b, operator;
+if (argc != 4)
+{
+printf("Error\n");
+exit(98);
+}
+if (strlen(argv[2]) != 1)
+{
+printf("Error\n");
+exit(99);
+}
+operator = argv[2][0];
+switch (operator)
+{
+case '+':
+break;
+case '-':
+break;
+case '*':
+break;
+case '/':
+break;
+case '%':
+break;
+default:
+printf("Error\n");
+exit(99);
+}
+a = atoi(argv[1]);
+b = atoi(argv[3]);
+get = get_op_func(argv[2]);
+printf("%d\n", get(a, b));
+return (0);
 }
